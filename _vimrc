@@ -135,7 +135,7 @@ Plugin 'klen/python-mode'
 """ python-mode settings """ {{{
 let pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
-let g:pymode_lint_ignore="E128,E303,E501"
+let g:pymode_lint_ignore="E128,E225,E303,E501"
 """}}}
 Plugin 'Konfekt/FastFold'
 """ FastFold settings """ {{{
