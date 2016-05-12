@@ -133,6 +133,7 @@ Plugin 'klen/python-mode'
 """ python-mode settings """ {{{
 let pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
+let g:pymode_lint_ignore="E128,E303,E501"
 """}}}
 Plugin 'Konfekt/FastFold'
 """ FastFold settings """ {{{
@@ -174,14 +175,6 @@ let g:calendar_diary="~/Onedrive/Configs/Diary/"
 Plugin 'iamcco/markdown-preview.vim'
 """ Markdown-Preview settings """ {{{
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
-"""}}}
-Plugin 'gilligan/vim-lldb'
-""" vim-lldb settings """ {{{
-let g:lldb_map_Lstart = "<F5>"
-let g:lldb_map_Lcontinue = "<F6>"
-let g:lldb_map_Lbreakpoint = "<F9>"
-let g:lldb_map_Lstep = "<F7>"
-let g:lldb_map_Lnext = "<F8>"
 """}}}
 endif
 
