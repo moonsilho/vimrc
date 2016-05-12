@@ -56,6 +56,7 @@ imap <c-o> <cr><esc>kA
 
 """"""""""""""""""""""""""""" Auto-pair in visual mode """""""""""""""""""""""""""""""""
 function VisualModePair(chl, chr)
+	:DelimitMateOff
 	let [bufnum, lnum, col, off] = getpos("'<")
 	call setpos(".", [bufnum, lnum, col, off])
 	execute "normal i" . a:chl
@@ -66,10 +67,11 @@ function VisualModePair(chl, chr)
 	endif
 	call setpos(".", [bufnum, lnum, col, off])
 	execute "normal a" . a:chr
+	:DelimitMateOn
 endfunction
 
 :vmap ' :call VisualModePair("'", "'")<cr>
-:vmap " :call VisualModePair(""", """)<cr>
+:vmap " :call VisualModePair('"', '"')<cr>
 :vmap ( :call VisualModePair("(", ")")<cr>
 :vmap ) :call VisualModePair("(", ")")<cr>
 :vmap [ :call VisualModePair("[", "]")<cr>
