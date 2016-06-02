@@ -141,6 +141,10 @@ Plugin 'rking/ag.vim'
 """ ag.vim settings """ {{{
 let g:ag_prg="ag --column"
 """}}}
+Plugin 'dyng/ctrlsf.vim'
+""" CtrlSF settings """ {{{
+nnoremap <C-F> :CtrlSF<space>
+"""}}}
 Plugin 'nathanaelkane/vim-indent-guides'
 """ vim-indent-guides settings """ {{{
 let g:indent_guides_enable_on_vim_startup=1
