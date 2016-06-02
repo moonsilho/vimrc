@@ -94,8 +94,6 @@ Plugin 'gmarik/Vundle.vim'
 " Keep Plugin commands between vundle#begin/end.
 " plugin on GitHub repo
 Plugin 'tpope/vim-fugitive'
-" plugin from http://vim-scripts.org/vim/scripts.html
-Plugin 'git://git.wincent.com/command-t.git'
 " git repos on your local machine (i.e. when working on your own plugin)
 " Plugin 'file:///home/gmarik/path/to/plugin'
 " The sparkup vim script is in a subdirectory of this repo called vim.
@@ -119,6 +117,7 @@ let Tlist_Show_One_File=1
 let Tlist_Exit_OnlyWindow=1
 let Tlist_File_Fold_Auto_Close=1
 let Tlist_Use_Right_Window=1
+map <silent> <leader>tl :TlistToggle<cr>
 """}}}
 
 Plugin 'scrooloose/nerdtree'
@@ -128,35 +127,8 @@ let NERDTreeQuitOnOpen=0
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
 """}}}
-Plugin 'WinManager'
-""" WinManager settings """{{{
 
-let g:NERDTree_title='NERD Tree'
-let g:winManagerWindowLayout='NERDTree|TagList'
-
-function NERDTree_Start()
-	exec 'NERDTree'
-endfunction
-
-function NERDTree_IsValid()
-	return 1
-endfunction
-
-autocmd VimEnter *.py,*.cpp,*.c,*.h,*.java,*.jsp WMToggle
-
-let g:isVimEnter = 0
-
-function WMToggleTab()
-	if (g:isVimEnter == 0)
-		WMToggle
-	endif
-	let g:isVimEnter = 0
-endfunction
-
-au BufNewFile,BufRead *.py,*.cpp,*.c,*.h,*.java,*.jsp call WMToggleTab()
-
-autocmd QuitPre *.py,*.cpp,*.c,*.h,*.java,*.jsp execute QuitLast()
-"""}}}
+Plugin 'jistr/vim-nerdtree-tabs'
 
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
@@ -220,13 +192,6 @@ Plugin 'iamcco/markdown-preview.vim'
 """ Markdown-Preview settings """ {{{
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 """}}}
-"function QuitLast()
-	"if buflisted(0) == 0
-		"execute 'confirm qa'
-	"endif
-"endfunction
-
-"autocmd QuitPre * execute QuitLast()
 
 endif
 
