@@ -126,8 +126,8 @@ let NERDChristmasTree=1
 let NERDTreeQuitOnOpen=0
 let NERDTreeShowFiles=1
 let NERDTreeShowHidden=1
+let NERDTreeIgnore=['\.swp$', '\.pyc$', '\.DS_Store$', '^\.git$']
 """}}}
-
 Plugin 'jistr/vim-nerdtree-tabs'
 
 Plugin 'Raimondi/delimitMate'
