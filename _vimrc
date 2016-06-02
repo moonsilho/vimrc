@@ -70,16 +70,14 @@ function VisualModePair(chl, chr)
 	:DelimitMateOn
 endfunction
 
-:vmap ' :call VisualModePair("'", "'")<cr>
-:vmap " :call VisualModePair('"', '"')<cr>
-:vmap ( :call VisualModePair("(", ")")<cr>
-:vmap ) :call VisualModePair("(", ")")<cr>
-:vmap [ :call VisualModePair("[", "]")<cr>
-:vmap ] :call VisualModePair("[", "]")<cr>
-:vmap { :call VisualModePair("{", "}")<cr>
-:vmap } :call VisualModePair("{", "}")<cr>
-:vmap < :call VisualModePair("<", ">")<cr>
-:vmap > :call VisualModePair("<", ">")<cr>
+:vnoremap ' :call VisualModePair("'", "'")<cr>
+:vnoremap " :call VisualModePair('"', '"')<cr>
+:vnoremap ( :call VisualModePair("(", ")")<cr>
+:vnoremap ) :call VisualModePair("(", ")")<cr>
+:vnoremap [ :call VisualModePair("[", "]")<cr>
+:vnoremap ] :call VisualModePair("[", "]")<cr>
+:vnoremap { :call VisualModePair("{", "}")<cr>
+:vnoremap } :call VisualModePair("{", "}")<cr>
 
 """"""""""""""""""""""""""""""""""""""" Bundle """""""""""""""""""""""""""""""""""""""""
 
@@ -113,8 +111,52 @@ if has('gui_running')
 set lines=40 columns=160
 set guifont=Monaco:h12
 
-Plugin 'taglist.vim'
-Plugin 'winmanager'
+Plugin 'moonsilho/taglist.vim'
+""" taglist settings """ {{{
+"let Tlist_Auto_Open=1
+let Tlist_Show_Menu=1
+let Tlist_Show_One_File=1
+let Tlist_Exit_OnlyWindow=1
+let Tlist_File_Fold_Auto_Close=1
+let Tlist_Use_Right_Window=1
+"""}}}
+
+Plugin 'scrooloose/nerdtree'
+""" nerdtree settings """{{{
+let NERDChristmasTree=1
+let NERDTreeQuitOnOpen=0
+let NERDTreeShowFiles=1
+let NERDTreeShowHidden=1
+"""}}}
+Plugin 'WinManager'
+""" WinManager settings """{{{
+
+let g:NERDTree_title='NERD Tree'
+let g:winManagerWindowLayout='NERDTree|TagList'
+
+function NERDTree_Start()
+	exec 'NERDTree'
+endfunction
+
+function NERDTree_IsValid()
+	return 1
+endfunction
+
+autocmd VimEnter *.py,*.cpp,*.c,*.h,*.java,*.jsp WMToggle
+
+let g:isVimEnter = 0
+
+function WMToggleTab()
+	if (g:isVimEnter == 0)
+		WMToggle
+	endif
+	let g:isVimEnter = 0
+endfunction
+
+au BufNewFile,BufRead *.py,*.cpp,*.c,*.h,*.java,*.jsp call WMToggleTab()
+
+autocmd QuitPre *.py,*.cpp,*.c,*.h,*.java,*.jsp execute QuitLast()
+"""}}}
 
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
@@ -178,6 +220,14 @@ Plugin 'iamcco/markdown-preview.vim'
 """ Markdown-Preview settings """ {{{
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 """}}}
+"function QuitLast()
+	"if buflisted(0) == 0
+		"execute 'confirm qa'
+	"endif
+"endfunction
+
+"autocmd QuitPre * execute QuitLast()
+
 endif
 
 " Color schemes
@@ -258,27 +308,5 @@ fu! s:insert_python_coding()
     exec "norm i# -*- coding:utf-8 -*-\n"
 	endfu
 
-""""""""""""""""""""""""""""""""""" Set Taglist """""""""""""""""""""""""""""""""""""""""
 
-let Tlist_Show_One_File = 1
-let Tlist_Exit_OnlyWindow = 1
-let Tlist_Use_Right_Window = 1
-
-"""""""""""""""""""""""""""""""" Windows and Layouts """"""""""""""""""""""""""""""""""""
-let g:winManagerWindowLayout='FileExplorer|TagList'
-
-map <c-w><c-f> :FirstExplorerWindow<cr>
-map <c-w><c-b> :BottomExplorerWindow<cr>
-map <c-w><c-t> :WMToggle<cr>
-
-function QuitLast()
-	if buflisted(0) == 0
-		execute 'confirm qa'
-	endif
-endfunction
-
-if has ('gui_running')
-	autocmd QuitPre *.py,*.cpp,*.c,*.h,*.java,*.jsp execute QuitLast()
-	autocmd VimEnter *.py,*.cpp,*.c,*.h,*.java,*.jsp WMToggle
-endif
 
