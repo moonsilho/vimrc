@@ -1,6 +1,5 @@
 set nocompatible              " be iMproved, required
 filetype off                  " required
-
 """""""""""""""""""""""""""""""""""""""" Get OS """"""""""""""""""""""""""""""""""""""""
 function MySys()
 	if has("win32") || has ("win64")
@@ -53,6 +52,15 @@ set textwidth=100
 
 """""""""""""""""""""""""""""""""""""" Key maps """"""""""""""""""""""""""""""""""""""""
 imap <c-o> <cr><esc>kA
+imap <c-space> <esc>
+nmap <c-space> i <esc>
+imap <s-space> <esc>l
+nmap <s-space> i <esc>l
+imap <c-h> <left>
+imap <c-l> <right>
+imap <c-j> <down>
+imap <c-k> <up>
+imap <c-a> <esc>A
 
 """"""""""""""""""""""""""""" Auto-pair in visual mode """""""""""""""""""""""""""""""""
 function VisualModePair(chl, chr)
@@ -129,6 +137,9 @@ let NERDTreeShowHidden=1
 let NERDTreeIgnore=['\.swp$', '\.pyc$', '\.DS_Store$', '^\.git$']
 """}}}
 Plugin 'jistr/vim-nerdtree-tabs'
+""" nerd-tree-tabs settings """{{{
+let g:nerdtree_tabs_smart_startup_focus=2
+"""}}}
 
 Plugin 'Raimondi/delimitMate'
 Plugin 'tpope/vim-surround'
@@ -153,7 +164,7 @@ Plugin 'klen/python-mode'
 """ python-mode settings """ {{{
 let pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
-let g:pymode_lint_ignore="E128,E225,E303,E501"
+let g:pymode_lint_ignore="E128,E201,E202,E225,E302,E303,E501"
 """}}}
 Plugin 'Konfekt/FastFold'
 """ FastFold settings """ {{{
@@ -196,6 +207,7 @@ Plugin 'iamcco/markdown-preview.vim'
 """ Markdown-Preview settings """ {{{
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
 """}}}
+Plugin 'mattn/emmet-vim'
 
 endif
 
@@ -273,9 +285,6 @@ map <F2> :call NextEncode()<cr>
 """"""""""""""""""""""""""""""""""" File Types """"""""""""""""""""""""""""""""""""""""""
 au BufNewFile *.py call <SID>insert_python_coding()
 fu! s:insert_python_coding()
-    exec "norm i#! /usr/bin/env python\n"
-    exec "norm i# -*- coding:utf-8 -*-\n"
+    exec "norm i#! /usr/bin/env python\r\n"
+    exec "norm i# -*- coding:utf-8 -*-\r\n"
 	endfu
-
-
-
