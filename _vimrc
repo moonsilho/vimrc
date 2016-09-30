@@ -62,32 +62,13 @@ imap <c-j> <down>
 imap <c-k> <up>
 imap <c-a> <esc>A
 
-"""""""""""""""""""""""""" Auto-completion in insert mode """"""""""""""""""""""""""""""
-"function InsertModeCompletion()
-	"let chl = getline(".")[col(".") - 1]
-	"let chr = getline(".")[col(".")]
-
-	"if chl == "{" && chr == "}"
-		"execute "normal lxa\r}"
-		"execute "normal k"
-	"endif
-	""echo chl
-	""let [bufnum, lnum, col, off, curswant] = getcurpos()
-
-	""call setpos(".", [bufnum, lnum, col, off])
-	""execute "normal i" . a:chl
-
-	""if col != 0x7FFFFFFF
-		""let col = col + 1
-	""endif
-	""call setpos(".", [bufnum, lnum, col, off, curswant])
-"endfunction
-
-":inoremap <cr> <esc>:call InsertModeCompletion()<cr>a<cr>
-
 """"""""""""""""""""""""""""" Auto-pair in visual mode """""""""""""""""""""""""""""""""
 function VisualModePair(chl, chr)
-	:DelimitMateOff
+
+	""" Depends on which auto-pair plugin
+	":DelimitMateOff
+	let b:autopairs_enabled=0
+
 	let [bufnum, lnum, col, off] = getpos("'<")
 	call setpos(".", [bufnum, lnum, col, off])
 	execute "normal i" . a:chl
@@ -98,7 +79,10 @@ function VisualModePair(chl, chr)
 	endif
 	call setpos(".", [bufnum, lnum, col, off])
 	execute "normal a" . a:chr
-	:DelimitMateOn
+
+	""" Depends on which auto-pair plugin
+	":DelimitMateOff
+	let b:autopairs_enabled=1
 endfunction
 
 :vnoremap ' :call VisualModePair("'", "'")<cr>
@@ -164,7 +148,6 @@ Plugin 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_smart_startup_focus=2
 """}}}
 
-"Plugin 'Raimondi/delimitMate'
 Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'rizzatti/dash.vim'
