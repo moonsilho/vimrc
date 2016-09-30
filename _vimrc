@@ -62,6 +62,29 @@ imap <c-j> <down>
 imap <c-k> <up>
 imap <c-a> <esc>A
 
+"""""""""""""""""""""""""" Auto-completion in insert mode """"""""""""""""""""""""""""""
+"function InsertModeCompletion()
+	"let chl = getline(".")[col(".") - 1]
+	"let chr = getline(".")[col(".")]
+
+	"if chl == "{" && chr == "}"
+		"execute "normal lxa\r}"
+		"execute "normal k"
+	"endif
+	""echo chl
+	""let [bufnum, lnum, col, off, curswant] = getcurpos()
+
+	""call setpos(".", [bufnum, lnum, col, off])
+	""execute "normal i" . a:chl
+
+	""if col != 0x7FFFFFFF
+		""let col = col + 1
+	""endif
+	""call setpos(".", [bufnum, lnum, col, off, curswant])
+"endfunction
+
+":inoremap <cr> <esc>:call InsertModeCompletion()<cr>a<cr>
+
 """"""""""""""""""""""""""""" Auto-pair in visual mode """""""""""""""""""""""""""""""""
 function VisualModePair(chl, chr)
 	:DelimitMateOff
@@ -141,7 +164,8 @@ Plugin 'jistr/vim-nerdtree-tabs'
 let g:nerdtree_tabs_smart_startup_focus=2
 """}}}
 
-Plugin 'Raimondi/delimitMate'
+"Plugin 'Raimondi/delimitMate'
+Plugin 'jiangmiao/auto-pairs'
 Plugin 'tpope/vim-surround'
 Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -169,6 +193,32 @@ let g:pymode_lint_ignore="E128,E201,E202,E225,E302,E303,E501"
 Plugin 'Konfekt/FastFold'
 """ FastFold settings """ {{{
 let g:fastfold_savehook = 0
+"""}}}
+Plugin 'kien/rainbow_parentheses.vim'
+""" Rainbow_Parentheses settings """ {{{
+let g:rbpt_colorpairs = [
+    \ ['brown',       'RoyalBlue3'],
+    \ ['Darkblue',    'SeaGreen3'],
+    \ ['darkgray',    'DarkOrchid3'],
+    \ ['darkgreen',   'firebrick3'],
+    \ ['darkcyan',    'RoyalBlue3'],
+    \ ['darkred',     'SeaGreen3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['brown',       'firebrick3'],
+    \ ['gray',        'RoyalBlue3'],
+    \ ['darkmagenta', 'DarkOrchid3'],
+    \ ['Darkblue',    'firebrick3'],
+    \ ['darkgreen',   'RoyalBlue3'],
+    \ ['darkcyan',    'SeaGreen3'],
+    \ ['darkred',     'DarkOrchid3'],
+    \ ['red',         'firebrick3'],
+    \ ]
+let g:rbpt_max = 16
+let g:rbpt_loadcmd_toggle = 0
+au VimEnter * RainbowParenthesesToggle
+au Syntax * RainbowParenthesesLoadRound
+au Syntax * RainbowParenthesesLoadSquare
+au Syntax * RainbowParenthesesLoadBraces
 """}}}
 Plugin 'scrooloose/syntastic'
 """ Syntastic settings """ {{{
@@ -284,7 +334,7 @@ map <F2> :call NextEncode()<cr>
 
 """"""""""""""""""""""""""""""""""" File Types """"""""""""""""""""""""""""""""""""""""""
 au BufNewFile *.py call <SID>insert_python_coding()
-fu! s:insert_python_coding()
+function! s:insert_python_coding()
     exec "norm i#! /usr/bin/env python\r\n"
     exec "norm i# -*- coding:utf-8 -*-\r\n"
-	endfu
+endfunction
