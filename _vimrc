@@ -218,6 +218,7 @@ Plugin 'Valloric/YouCompleteMe'
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+autocmd CursorMovedI * if pumvisible() == 0|silent! pclose|endif
 """}}}
 Plugin 'jeaye/color_coded'
 Plugin 'rdnetto/YCM-Generator'
