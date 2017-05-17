@@ -52,11 +52,8 @@ set textwidth=100
 
 """""""""""""""""""""""""""""""""""""" Key maps """"""""""""""""""""""""""""""""""""""""
 imap <c-o> <cr><esc>kA
-imap <c-space> <esc>
-nmap <c-space> i <esc>
 imap <s-space> <esc>l
-nmap <s-space> i <esc>l
-imap <c-h> <left>
+nmap <s-space> i <esc>
 imap <c-l> <right>
 imap <c-j> <down>
 imap <c-k> <up>
@@ -149,6 +146,10 @@ let g:nerdtree_tabs_smart_startup_focus=2
 """}}}
 
 Plugin 'jiangmiao/auto-pairs'
+""" auto-pairs settings """{{{
+let g:AutoPairsFlyMode=1
+"""}}}
+
 Plugin 'tpope/vim-surround'
 Plugin 'rizzatti/dash.vim'
 Plugin 'scrooloose/nerdcommenter'
@@ -171,7 +172,7 @@ Plugin 'klen/python-mode'
 """ python-mode settings """ {{{
 let pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
-let g:pymode_lint_ignore="E128,E201,E202,E225,E302,E303,E501"
+let g:pymode_lint_ignore="E116,E128,E201,E202,E225,E302,E303,E501"
 """}}}
 Plugin 'Konfekt/FastFold'
 """ FastFold settings """ {{{
