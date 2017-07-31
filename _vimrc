@@ -54,10 +54,9 @@ set textwidth=100
 imap <c-o> <cr><esc>kA
 imap <s-space> <esc>l
 nmap <s-space> i <esc>
-imap <c-l> <right>
-imap <c-j> <down>
-imap <c-k> <up>
+""" <c-hjkl> as arrow has defined in karabiner
 imap <c-a> <esc>A
+imap <c-cr> <esc>A<cr>
 
 """"""""""""""""""""""""""""" Auto-pair in visual mode """""""""""""""""""""""""""""""""
 function VisualModePair(chl, chr)
@@ -147,7 +146,7 @@ let g:nerdtree_tabs_smart_startup_focus=2
 
 Plugin 'jiangmiao/auto-pairs'
 """ auto-pairs settings """{{{
-let g:AutoPairsFlyMode=1
+let g:AutoPairsFlyMode=0
 """}}}
 
 Plugin 'tpope/vim-surround'
@@ -172,7 +171,7 @@ Plugin 'klen/python-mode'
 """ python-mode settings """ {{{
 let pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
-let g:pymode_lint_ignore="E116,E128,E201,E202,E225,E302,E303,E501"
+let g:pymode_lint_ignore="E116,E128,E201,E202,E225,E231,E251,E302,E303,E501,E0602,W391"
 """}}}
 Plugin 'Konfekt/FastFold'
 """ FastFold settings """ {{{
