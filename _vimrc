@@ -59,7 +59,7 @@ imap <c-a> <esc>A
 imap <c-cr> <esc>A<cr>
 
 """"""""""""""""""""""""""""" Auto-pair in visual mode """""""""""""""""""""""""""""""""
-function VisualModePair(chl, chr)
+function VisualModePair(chl, chr, pos)
 
 	""" Depends on which auto-pair plugin
 	":DelimitMateOff
@@ -76,19 +76,24 @@ function VisualModePair(chl, chr)
 	call setpos(".", [bufnum, lnum, col, off])
 	execute "normal a" . a:chr
 
+	if a:pos == 0
+		let [bufnum, lnum, col, off] = getpos("'<")
+		call setpos(".", [bufnum, lnum, col, off])
+	endif
+
 	""" Depends on which auto-pair plugin
 	":DelimitMateOff
 	let b:autopairs_enabled=1
 endfunction
 
-:vnoremap ' :call VisualModePair("'", "'")<cr>
-:vnoremap " :call VisualModePair('"', '"')<cr>
-:vnoremap ( :call VisualModePair("(", ")")<cr>
-:vnoremap ) :call VisualModePair("(", ")")<cr>
-:vnoremap [ :call VisualModePair("[", "]")<cr>
-:vnoremap ] :call VisualModePair("[", "]")<cr>
-:vnoremap { :call VisualModePair("{", "}")<cr>
-:vnoremap } :call VisualModePair("{", "}")<cr>
+:vnoremap ' :call VisualModePair("'", "'", 1)<cr>
+:vnoremap " :call VisualModePair('"', '"', 1)<cr>
+:vnoremap ( :call VisualModePair("(", ")", 0)<cr>
+:vnoremap ) :call VisualModePair("(", ")", 1)<cr>
+:vnoremap [ :call VisualModePair("[", "]", 0)<cr>
+:vnoremap ] :call VisualModePair("[", "]", 1)<cr>
+:vnoremap { :call VisualModePair("{", "}", 0)<cr>
+:vnoremap } :call VisualModePair("{", "}", 1)<cr>
 
 """"""""""""""""""""""""""""""""""""""" Bundle """""""""""""""""""""""""""""""""""""""""
 
