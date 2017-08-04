@@ -324,6 +324,6 @@ map <F2> :call NextEncode()<cr>
 """"""""""""""""""""""""""""""""""" File Types """"""""""""""""""""""""""""""""""""""""""
 au BufNewFile *.py call <SID>insert_python_coding()
 function! s:insert_python_coding()
-    exec "norm i#! /usr/bin/env python\r\n"
-    exec "norm i# -*- coding:utf-8 -*-\r\n"
+    exec "norm i#! /usr/bin/env python\n"
+    exec "norm i# -*- coding:utf-8 -*-\n\n"
 endfunction
