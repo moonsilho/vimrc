@@ -166,7 +166,8 @@ let g:ag_prg="ag --column"
 """}}}
 Plugin 'dyng/ctrlsf.vim'
 """ CtrlSF settings """ {{{
-nnoremap <C-F> :CtrlSF<space>
+nmap <c-s><c-f> <Plug>CtrlSFPrompt
+vmap <c-s><c-f> <Plug>CtrlSFVwordPath
 """}}}
 Plugin 'nathanaelkane/vim-indent-guides'
 """ vim-indent-guides settings """ {{{
