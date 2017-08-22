@@ -54,7 +54,13 @@ set textwidth=100
 imap <c-o> <cr><esc>kA
 imap <s-space> <esc>l
 nmap <s-space> i <esc>
-""" <c-hjkl> as arrow has defined in karabiner
+""" <c-hl> as arrow has defined in karabiner because <c-h> is backspace in global
+""" <c-jk> will conflict with enter and delete to end in global if set in karabiner
+map <c-k> <up>
+imap <c-k> <up>
+map <c-j> <down>
+imap <c-j> <down>
+
 imap <c-a> <esc>A
 imap <c-cr> <esc>A<cr>
 
@@ -177,7 +183,7 @@ Plugin 'klen/python-mode'
 """ python-mode settings """ {{{
 let pymode_rope = 0
 let g:pymode_rope_lookup_project = 0
-let g:pymode_lint_ignore="E116,E128,E201,E202,E225,E231,E251,E302,E303,E501,E0602,W391"
+let g:pymode_lint_ignore="E116,E128,E201,E202,E225,E231,E251,E302,E303,E501,E0602,W391,W0401"
 """}}}
 Plugin 'Konfekt/FastFold'
 """ FastFold settings """ {{{
