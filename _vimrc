@@ -57,9 +57,9 @@ nmap <s-space> i <esc>
 """ <c-hl> as arrow has defined in karabiner because <c-h> is backspace in global
 """ <c-jk> will conflict with enter and delete to end in global if set in karabiner
 map <c-k> <up>
-imap <c-k> <up>
-map <c-j> <down>
 imap <c-j> <down>
+imap <c-k> <up>
+"map <c-j> <down>
 
 imap <c-a> <esc>A
 imap <c-cr> <esc>A<cr>
@@ -228,11 +228,14 @@ let g:syntastic_check_on_wq = 0
 Plugin 'Valloric/YouCompleteMe'
 """ YouCompleteMe settings """ {{{
 let g:ycm_global_ycm_extra_conf = '~/.vim/bundle/YouCompleteMe/third_party/ycmd/cpp/ycm/.ycm_extra_conf.py'
+nnoremap gd :YcmCompleter GoToDefinitionElseDeclaration<CR>
 let g:ycm_key_list_select_completion = ['<c-n>', '<Down>']
 let g:ycm_key_list_previous_completion = ['<c-p>', '<Up>']
+let g:ycm_python_binary_path = '~/.pyenv/shims/python3'
 autocmd CursorMovedI * if pumvisible() == 0|silent! pclose|endif
 """}}}
 Plugin 'jeaye/color_coded'
+let g:color_coded_enabled = 1
 Plugin 'rdnetto/YCM-Generator'
 Plugin 'kien/ctrlp.vim'
 Plugin 'SirVer/ultisnips'
@@ -249,6 +252,7 @@ Plugin 'mattn/calendar-vim'
 """ calendar settings """ {{{
 let g:calendar_diary="~/Onedrive/Configs/Diary/"
 """}}}
+Plugin 'iamcco/mathjax-support-for-mkdp'
 Plugin 'iamcco/markdown-preview.vim'
 """ Markdown-Preview settings """ {{{
 let g:mkdp_path_to_chrome = "open -a Google\\ Chrome"
@@ -281,7 +285,7 @@ call vundle#end()            " required
 
 
 """"""""""""""""""""""""""""" Specify Interpreter """"""""""""""""""""""""""""""""""""""
-let g:ycm_path_to_python_interpreter = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
+"let g:ycm_path_to_python_interpreter = '/System/Library/Frameworks/Python.framework/Versions/2.7/bin/python'
 
 
 """""""""""""""""""""""""""""""" Color Schemes """""""""""""""""""""""""""""""""""""""""
@@ -331,6 +335,6 @@ map <F2> :call NextEncode()<cr>
 """"""""""""""""""""""""""""""""""" File Types """"""""""""""""""""""""""""""""""""""""""
 au BufNewFile *.py call <SID>insert_python_coding()
 function! s:insert_python_coding()
-    exec "norm i#! /usr/bin/env python\n"
-    exec "norm i# -*- coding:utf-8 -*-\n\n"
+    exec "norm i#! /usr/bin/env python\r"
+    exec "norm i# -*- coding:utf-8 -*-\r\r"
 endfunction
